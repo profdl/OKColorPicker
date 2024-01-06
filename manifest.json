@@ -1,0 +1,115 @@
+{  "id": "66314516",
+  "name": "OK Color Picker",
+  "version": "2.0.0",
+  "main": "index.html",
+  "manifestVersion": 5,
+  "host": [
+    {
+      "app": "PS",
+      "minVersion": "23.3"
+    }
+  ],
+
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "OKColorPicker",
+      "minimumSize": {
+        "width": 230,
+        "height": 350
+      },
+      "maximumSize": {
+        "width": 2000,
+        "height": 2000
+      },
+      "preferredDockedSize": {
+        "width": 230,
+        "height": 600
+      },
+      "preferredFloatingSize": {
+        "width": 230,
+        "height": 600
+      },
+      "icons": [
+        {
+          "width": 32,
+          "height": 32,
+          "path": "icons/icon_D.png",
+          "scale": [
+            1,
+            2
+          ],
+          "theme": [
+            "dark",
+            "darkest"
+          ],
+          "species": [
+            "generic"
+          ]
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "path": "icons/icon_N.png",
+          "scale": [
+            1,
+            2
+          ],
+          "theme": [
+            "lightest",
+            "light"
+          ],
+          "species": [
+            "generic"
+          ]
+        }
+      ],
+      "label": {
+        "default": "OK Color Picker"
+      }
+    }
+  ],
+  "icons": [
+    {
+      "width": 23,
+      "height": 23,
+      "path": "icons/dark.png",
+      "scale": [
+        1,
+        2
+      ],
+      "theme": [
+        "darkest",
+        "dark",
+        "medium"
+      ]
+    },
+    {
+      "width": 23,
+      "height": 23,
+      "path": "icons/light.png",
+      "scale": [
+        1,
+        2
+      ],
+      "theme": [
+        "lightest",
+        "light"
+      ]
+    }
+  ],
+  "requiredPermissions": {
+    "network": {
+      "domains": ["https://adobe.com"]
+    },
+    "clipboard": "readAndWrite",
+    "webview": {
+      "allow": "yes",
+      "domains": ["https://*.adobe.com", "https://*.google.com"]
+    },
+    "launchProcess": {
+      "schemes": ["https", "slack"],
+      "extensions": [".xd", ".psd"]
+    }
+  }
+}
