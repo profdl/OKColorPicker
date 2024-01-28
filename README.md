@@ -6,6 +6,9 @@ OK Color Picker is designed for more intuitive color selection. It helps mantain
 You can find the plugin here
 https://exchange.adobe.com/publisher/cc/4403a2d6-1435-4751-89d2-74e349821ee0/professor-lefcourt?page=1
 
+To manually install the plugin you can download the file here
+https://drive.google.com/drive/folders/1F04nXvCZnJi85pBIQLBWU7u34HX6Ec7Z?usp=sharing
+
 Contact me at dlefcour at risd dot edu
 
 Created by Daniel Lefcourt @ risd.edu
