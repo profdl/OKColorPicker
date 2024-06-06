@@ -1,198 +1,45 @@
 body {
   padding: 10px;
-  color: lightgray;
-  width: 220px;
-  overflow-wrap: normal;
 }
 
-
-/* COLOR PREVIEW =================================== */
-
-#preview-holder{
+.base-grid {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
-  margin-bottom:5px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 2px;
-  width: 200px;
-  border-radius: 5px;
-  border: 2px solid #333;
-  position: absolute;
 }
 
-#current-color {
+.input-field {
+  flex-direction: row;
+
+}
+
+.color-prev {
+  height: 100px;
   width: 100%;
-  height: 70px;
-  background-color: #000;
-  border: 0px solid #999;
-  border-radius: 0px;
-  margin: 0;
-  padding: 0px;
 }
-#current-value {
+
+.color-sliders {
+  flex-direction: column;
+}
+
+.slider {
   width: 100%;
-  height: 70px;
-  background-color: #000;
-  border: 0px solid #999;
-  border-radius: 0px;
-  margin:0px;
-  padding: 0px;
+  height: auto;
 }
 
-
-#hex-input {
-  color: darkgray;
-  width: 60px;
-  height: 20px;
-  margin-top: 95px;
-  margin-bottom: 0px;
-  margin-left: 4px;
-  margin-right: 0px;
-  position: absolute;
-}
-
-#color-name {
-  color: darkgray;
-  width: 125px;
-  height: 20px;
-  margin-top: 95px;
-  margin-bottom: 0px;
-  margin-left: 70px;
-  margin-right: 0px;
-  position: absolute;
-}
-
-/* SLIDERS =================================== */
-
-#color-grids{
-  position: absolute;
-  margin-top: 130px;
-}
-
-
-#lightnessArea {
-  position: absolute;
-  margin-top: 0px;
-}
-
-#lightness-number{
-  position: absolute;
-  justify-content: end;
-  z-index: 0;
-}
-
-#lightness-grid{
-  position: absolute;
-  margin-top: 20px;
-  z-index: 300;
-}
-
-#lightness-slider{
-  position: absolute;
-  margin-top: 54px;
-  margin-left: -8px;
-  z-index: 0;
-}
-
-#saturationArea {
-  position: absolute;
-  margin-top:90px;
-}
-
-#saturation-number{
-  position: absolute;
-  justify-content: end;
-  z-index: 0;
-}
-
-#saturation-grid{
-  position: absolute;
-  margin-top: 20px;
-  z-index: 300;
-}
-
-#saturation-slider{
-  position: absolute;
-  margin-top: 54px;
-  margin-left: -8px;
-  z-index: 0;
-}
-
-#hueArea {
-  position: absolute;
-  margin-top: 180px;
-}
-
-#hue-number{
-  position: absolute;
-  justify-content: end;
-  z-index: 0;
-}
-
-#hue-grid{
-  position: absolute;
-  margin-top: 20px;
-  z-index: 300;
-}
-
-#hue-slider{
-  position: absolute;
-  margin-top: 54px;
-  margin-left: -8px;
-  z-index: 0;
-}
-
-
-label{
-  width: 200px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 0px;
-  position: absolute;
-  z-index: 300;
-}
-
-input {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  width: 217px;
-  padding: 0px;
-  z-index: 100;
-  position: relative;
-}
-
-.grid {
+.color-band {
   display: flex;
-  width: 200px;
-  height: 40px;
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-  z-index: 200;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
 }
 
-sp-picker {
-  position: absolute;
-  margin-top: 410px;
-  z-index: 1;
+.button {
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
 }
 
-sp-action-button {
-  position: absolute;
-  margin-top: 450px;
-  z-index: 1;
-}
-
-/* BOTTOM INFO =================================== */
-
-#info {
-  position: absolute;
-  margin-top: 480px;
-  width: 200px;
+sp-divider {
+  margin: 10px 0px;
+  width: 100%;
 }
