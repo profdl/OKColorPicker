@@ -32,6 +32,7 @@ let lightnessValue;
 let saturationValue;
 let hueValue;
 app = require('photoshop').app;
+action = require('photoshop').action
 
 // setup routine
 getColorFromApp();
@@ -139,11 +140,16 @@ document.getElementById(SLIDER_HUE).addEventListener("input", e => {
   HandleSliderChange();
 });
 
-//Listen for click on fgColor
-fgColorButton = document.getElementById("fgColor-button");
-fgColorButton.addEventListener("click", (e) => {
+// listen for color set with eyedropper 
+var colorSetListener = (e, d) => {
+  console.log(e, d);
+  if (!d._ref == "color") {
+    return;
+  }
   getColorFromApp();
-});
+}
+action.addNotificationListener([{ event: 'set' },
+], colorSetListener);
 
 
 async function setColorInApp() {
