@@ -4,74 +4,69 @@
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Color Picker</title>
+  <!-- Scripts -->
+  <!-- <script src="chroma.min.js"></script> -->
+  <script src="culori.min.js"></script>
+  <script src="nearestColor.js"></script>
+  <script src="colornamesBestOf.js"></script>
+  <script src="index.js"></script>
 </head>
 
 <body>
   <!-- Current Color Preview -->
-  <div id="preview-holder">
-    <div id="current-color"></div>
-    <div id="current-value"></div>
+  <div class="base-grid">
+    <div class="color-prev" id="current-color"></div>
+    <div class="color-prev" id="current-value"></div>
   </div>
-  <input type="text" id="hex-input" placeholder="#000000" size='s' quiet></input>
-  <input type="text" id="color-name" placeholder="Crimson" size='s' quiet></input>
+  <div class="base-grid"></div>
+  <input class="input-field" type="text" id="hex-in-output" placeholder="#000000"></input>
+  <input class="input-field" type="text" id="color-name" placeholder="Crimson"></input>
+  </div>
 
   <!-- COLOR GRIDS -->
-  <div id="color-grids" class="box">
-
-    <!--  LIGHTNESS -->
-    <div id="lightnessArea">
-      <label for="lightness-grid">Lightness / Value: </label>
-      <label id ="lightness-number" for="lightness-slider"></label>
-      <div id="lightness-grid" class="grid"></div>
-      <input type="range" id="lightness-slider" min="1" max="100" value="70" ></input>
-    </div>
-
-    <!--  CHROMA -->
-    <div id="saturationArea">
-      <label for="saturation-grid">Chroma / Saturation:</label>
-      <label id ="saturation-number" for="saturation-slider"></label>
-
-      <div id="saturation-grid" class="grid"></div>
-      <input type="range" id="saturation-slider" min="1" max="25" value="20" ></input>
-    </div>
+  <div class="base-grid color-sliders">
 
     <!--  HUE -->
-    <div id="hueArea">
-      <label for="hue-grid">Hue:</label>
-      <label id ="hue-number" for="hue-slider"></label>
-      <div id="hue-grid" class="grid"></div>
-      <input type="range" id="hue-slider" min="1"  max="360" value="180" ></input>
-    </div>
+    <sp-slider class="slider" id="slider_hue" value-label="°" variant="filled" fill-offset="left" min="0" max="360"
+      value="50" editable>
+      <sp-label slot="label">Hue:</sp-label>
+    </sp-slider>
+    <div class="color-band" id="grid_hue"></div>
+    <sp-divider size="medium"></sp-divider>
+    <!--  CHROMA -->
+    <sp-slider class="slider" id="slider_saturation" value-label="%" variant="filled" fill-offset="left" min="0"
+      max="100" value="50" editable>
+      <sp-label slot="label">Saturation:</sp-label>
+    </sp-slider>
+    <div class="color-band" id="grid_saturation"></div>
+    <sp-divider size="medium"></sp-divider>
+    <!--  LIGHTNESS -->
+    <sp-slider class="slider" id="slider_lightness" value-label="%" variant="filled" fill-offset="left" min="0"
+      max="100" value="50" editable>
+      <sp-label slot="label">Lightness:</sp-label>
+    </sp-slider>
+    <div class="color-band" id="grid_lightness"></div>
 
   </div>
 
-
-  <!--  Menu: Grid Style -->
-  <sp-picker id="gridDetail" placeholder="6" size='s' >
-    <sp-menu slot="options">
-      <sp-menu-item value="a">large blocks</sp-menu-item>
-      <sp-menu-item value="b">small blocks</sp-menu-item>
-      <sp-menu-item selected value="c">Gradient</sp-menu-item>
-    </sp-menu>
-  </sp-picker>
-
-  <!--  Button to get foreground color and call fgColor() function -->
-  <sp-action-button  id="fgColor-button" size='s' >Convert Foreground Color</sp-action-button>
-  
-
   <!-- Info -->
-  <div id="info" class="box" size='s' style="color: lightgray;">
+  <div id="info" class="box" style="color: lightgray;">
     <p style="color: rgb(200, 200, 200);  margin-top: 6px;">
-      OK Color Picker is designed for more intuitive color selection. It helps mantain consistent relationships between lightness, chroma, and hue. 
+      OK Color Picker is designed for more intuitive color selection, based on the OKhsl Colorspace. It helps mantain
+      consistent relationships between
+      lightness, saturation, and hue.
     </p>
     <p style="color: rgb(200, 200, 200);  margin-top: 6px;">
       Created by <a style="color: rgb(200, 200, 200);text-decoration: underline; "
         href="https://www.certainlynot.com">Daniel Lefcourt</a>
       @ <a style="color: rgb(200, 200, 200); text-decoration: underline;"
         href="https://www.risd.edu/academics/experimental-and-foundation-studies/faculty/daniel-lefcourt">risd.edu</a>
+    <p style="color: rgb(200, 200, 200);">
+      & <a style="color: rgb(200, 200, 200);text-decoration: underline; " href="https://lukashefti.ch/">Lukas
+        Hefti</a>
       <br>
-      Thanks to <a style="color: rgb(160, 160, 160); text-decoration: underline; "
-        href="https://gka.github.io/chroma.js/"> chroma.js</a> ,
+      Thanks to <a style="color: rgb(160, 160, 160); text-decoration: underline; " href="https://culorijs.org">
+        culori.js</a> ,
       <a style="color: rgb(160, 160, 160); text-decoration: underline; "
         href="https://bottosson.github.io/posts/oklab/">OK Colorspaces,</a>
       <br><a style="color: rgb(160, 160, 160); text-decoration: underline; "
@@ -80,14 +75,6 @@
         href="https://www.npmjs.com/package/nearest-color">nearest-color</a>.
     </p>
   </div>
-
-
-  <!-- Scripts -->
-  <script src="chroma.min.js"></script>
-  <script src="nearestColor.js"></script>
-  <script src="colornamesBestOf.js"></script>
-  <script src="index.js"></script>
-
 
 
 </body>
