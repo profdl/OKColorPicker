@@ -1,23 +1,22 @@
 const { converter, formatHex, okhsl, rgb, parse } = culori;
 
 function toOKHSL(r, g, b) {
-  return converter("okhsl")({ mode: "rgb", "r": r, "g": g, "b": b })
+  return converter("okhsl")({ mode: "rgb", r: r, g: g, b: b });
 }
 
 function toRGB(h, s, l) {
-  return converter("rgb")({ mode: "okhsl", "h": h, "s": s, "l": l })
+  return converter("rgb")({ mode: "okhsl", h: h, s: s, l: l });
 }
 
-
 // id binder
-const FILED_HEX_IN_OUT = "hex-in-output"
-const FIELD_COLOR_NAME = "color-name"
-const SLIDER_SATURATION = "slider_saturation"
-const SLIDER_LIGHTNESS = "slider_lightness"
-const SLIDER_HUE = "slider_hue"
-const GRID_SATURATION = "grid_saturation"
-const GRID_LIGHTNESS = "grid_lightness"
-const GRID_HUE = "grid_hue"
+const FILED_HEX_IN_OUT = "hex-in-output";
+const FIELD_COLOR_NAME = "color-name";
+const SLIDER_SATURATION = "slider_saturation";
+const SLIDER_LIGHTNESS = "slider_lightness";
+const SLIDER_HUE = "slider_hue";
+const GRID_SATURATION = "grid_saturation";
+const GRID_LIGHTNESS = "grid_lightness";
+const GRID_HUE = "grid_hue";
 
 const satSlider = document.getElementById(SLIDER_SATURATION);
 const lightSlider = document.getElementById(SLIDER_LIGHTNESS);
@@ -31,23 +30,26 @@ const hueGrid = document.getElementById(GRID_HUE);
 let lightnessValue;
 let saturationValue;
 let hueValue;
-app = require('photoshop').app;
-action = require('photoshop').action
+app = require("photoshop").app;
+action = require("photoshop").action;
 
 // setup routine
 getColorFromApp();
 updatePreview(lightnessValue, saturationValue, hueValue);
 
-
 function updatePreview() {
   //color
   let previewColor = document.getElementById("current-color");
   let color = toRGB(hueValue, saturationValue, lightnessValue);
-  previewColor.style.backgroundColor = `rgb(${color.r * 255}, ${color.g * 255}, ${color.b * 255})`;
+  previewColor.style.backgroundColor = `rgb(${color.r * 255}, ${
+    color.g * 255
+  }, ${color.b * 255})`;
   // color value
   let previewValue = document.getElementById("current-value");
   color = toRGB(0, 0, lightnessValue);
-  previewValue.style.backgroundColor = `rgb(${color.r * 255}, ${color.g * 255}, ${color.b * 255})`;
+  previewValue.style.backgroundColor = `rgb(${color.r * 255}, ${
+    color.g * 255
+  }, ${color.b * 255})`;
   // hex value
   let hexInput = document.getElementById(FILED_HEX_IN_OUT);
   color = toRGB(hueValue, saturationValue, lightnessValue);
@@ -55,13 +57,15 @@ function updatePreview() {
   hexInput.value = hex;
   //color name
   let colorNameInput = document.getElementById(FIELD_COLOR_NAME);
-  const colors = colorNameList.reduce((o, { name, hex }) => Object.assign(o, { [name]: hex }), {});
+  const colors = colorNameList.reduce(
+    (o, { name, hex }) => Object.assign(o, { [name]: hex }),
+    {}
+  );
   const nearest = nearestColor.from(colors);
-  colorNameInput.value = (nearest(hex).name);
+  colorNameInput.value = nearest(hex).name;
 
   setColorInApp();
 }
-
 
 // COLOR BANDS
 function redrawColorBands() {
@@ -87,7 +91,12 @@ function clearGrid() {
 // HUE GRID
 function createHueGrid(lightness, saturation, hue) {
   const stops = new Array(16).fill(String()).map((_v, i) => {
-    const oklab = { mode: 'okhsl', "h": (360 / 15) * i, "s": saturation, "l": lightness };
+    const oklab = {
+      mode: "okhsl",
+      h: (360 / 15) * i,
+      s: saturation,
+      l: lightness,
+    };
     return `${formatHex(oklab)}`;
   });
   createColorBand(stops, GRID_HUE);
@@ -96,7 +105,7 @@ function createHueGrid(lightness, saturation, hue) {
 // SATURATION GRID
 function createSatGrid(lightness, saturation, hue) {
   const stops = new Array(16).fill(String()).map((_v, i) => {
-    const oklab = { mode: 'okhsl', "h": hue, "s": (1 / 15) * i, "l": lightness };
+    const oklab = { mode: "okhsl", h: hue, s: (1 / 15) * i, l: lightness };
     return `${formatHex(oklab)}`;
   });
   createColorBand(stops, GRID_SATURATION);
@@ -105,7 +114,7 @@ function createSatGrid(lightness, saturation, hue) {
 // LIGHTNESS GRID
 function createLightGrid(lightness, saturation, hue) {
   const stops = new Array(16).fill(String()).map((_v, i) => {
-    const oklab = { mode: 'okhsl', "h": hue, "s": saturation, "l": (1 / 15) * i };
+    const oklab = { mode: "okhsl", h: hue, s: saturation, l: (1 / 15) * i };
     return `${formatHex(oklab)}`;
   });
   createColorBand(stops, GRID_LIGHTNESS);
@@ -119,38 +128,35 @@ function createColorBand(stops, grid) {
   grid.appendChild(box);
 }
 
-
 // Event Listener
 // HEX IN OUT
-document.getElementById(FILED_HEX_IN_OUT).addEventListener('change', e => {
+document.getElementById(FILED_HEX_IN_OUT).addEventListener("change", (e) => {
   getColorFromHex(e.target.value);
 });
 
 // Lightness / hue / saturation
-document.getElementById(SLIDER_LIGHTNESS).addEventListener("input", e => {
+document.getElementById(SLIDER_LIGHTNESS).addEventListener("input", (e) => {
   lightnessValue = e.target.value * 0.01;
   HandleSliderChange();
 });
-document.getElementById(SLIDER_SATURATION).addEventListener("input", e => {
+document.getElementById(SLIDER_SATURATION).addEventListener("input", (e) => {
   saturationValue = e.target.value * 0.01;
   HandleSliderChange();
 });
-document.getElementById(SLIDER_HUE).addEventListener("input", e => {
+document.getElementById(SLIDER_HUE).addEventListener("input", (e) => {
   hueValue = e.target.value;
   HandleSliderChange();
 });
 
-// listen for color set with eyedropper 
+// listen for color set with eyedropper
 var colorSetListener = (e, d) => {
   console.log(e, d);
   if (!d._ref == "color") {
     return;
   }
   getColorFromApp();
-}
-action.addNotificationListener([{ event: 'set' },
-], colorSetListener);
-
+};
+action.addNotificationListener([{ event: "set" }], colorSetListener);
 
 async function setColorInApp() {
   rgbColor = toRGB(hueValue, saturationValue, lightnessValue);
@@ -178,8 +184,7 @@ async function setColorInApp() {
   });
 }
 
-
-// get Colors 
+// get Colors
 function getColorFromHex(hex) {
   okColor = okhsl(hex);
 
@@ -189,7 +194,6 @@ function getColorFromHex(hex) {
   }
   setColorValues(okColor);
 }
-
 
 function getColorFromApp() {
   var foregroundColor = app.foregroundColor;
@@ -220,16 +224,12 @@ function HandleSliderChange() {
 function throttle(func, limit) {
   let inThrottle;
   return function () {
-    const args = arguments
-    const context = this
+    const args = arguments;
+    const context = this;
     if (!inThrottle) {
-      func.apply(context, args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
     }
-  }
+  };
 }
-
-
-
-

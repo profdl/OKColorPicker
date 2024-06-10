@@ -9,12 +9,17 @@ body {
 
 .input-field {
   flex-direction: row;
-
+  margin-left: 0px;
+  max-width: 140px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .color-prev {
   height: 100px;
   width: 100%;
+  margin-bottom: 10px;
+
 }
 
 .color-sliders {
